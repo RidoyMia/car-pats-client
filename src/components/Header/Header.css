@@ -1,0 +1,11 @@
+.header-container{
+    background-color: red
+}
+#sidebar a.active {
+    color: red;
+  }
+  #sidebar a {
+    padding: 0px 10px;
+    font-size: 15px;
+    color: white;
+  }

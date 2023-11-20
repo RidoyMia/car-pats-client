@@ -1,0 +1,29 @@
+.bannerone{
+    background-image: url('../../assets/banner1.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.custom-carousel .alice-carousel__prev-btn,
+.custom-carousel .alice-carousel__next-btn {
+  display: none !important;
+}
+.banner-heading{
+    font-size: 50px;
+    color: white;
+}
+.banner-sub-title{
+    border-left: 3px solid red;
+}
+.bannertwo{
+    background-image: url('../../assets/banner2.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.bannerthree{
+    background-image: url('../../assets/banner3.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
