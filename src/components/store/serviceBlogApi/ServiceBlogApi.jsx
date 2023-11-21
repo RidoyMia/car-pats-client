@@ -6,9 +6,12 @@ export const serviceBlog = createApi({
         getAllBestServices : builder.query({
              query : () => '/all',
             
+        }),
+        getSingleBestService : builder.query({
+            query : (id) => `/${id}`
         })    
     })
 })
 
 
-export const { useGetAllBestServicesQuery } = serviceBlog
+export const { useGetAllBestServicesQuery,useGetSingleBestServiceQuery } = serviceBlog

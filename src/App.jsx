@@ -7,6 +7,8 @@ import Dashboard from './page/Dashboard/Dashboard';
 import Services from './page/Services/Services';
 import Expert from './components/Exper/Expert';
 import Products from './page/Products/Products';
+import Login from './page/Login/Login';
+import Register from './page/Register/Register';
 
 const App = () => {
   const navigate = useNavigate();
@@ -15,7 +17,7 @@ const App = () => {
   };
   return (
     <>
-        <Routes>
+        {/* <Routes>
            <Route path='/dashboard' element={<Dashboard></Dashboard>}></Route>
         </Routes>
       <div>
@@ -26,10 +28,12 @@ const App = () => {
           <Route path='/services' element={<Services></Services>}></Route>
           <Route path='/expert' element={<Expert></Expert>}></Route>
           <Route path='/products' element={<Products></Products>}></Route>
+          <Route path='/login' element={<Login></Login>}></Route>
+          <Route path='/register' element={<Register></Register>}></Route>
         </Routes>
         {!isDashboardRoute() && <Footer />}
 
-      </div>
+      </div> */}
     </>
   );
 };

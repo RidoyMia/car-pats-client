@@ -6,8 +6,11 @@ export const BlogApi = createApi({
     endpoints : builder => ({
         getAllBlogs : builder.query({
             query : ()=> '/all'
+        }),
+        getSingleBlog : builder.query({
+            query : (id) => `/${id}`
         })
     })
 })
 
-export const {useGetAllBlogsQuery} = BlogApi
+export const {useGetAllBlogsQuery,useGetSingleBlogQuery} = BlogApi

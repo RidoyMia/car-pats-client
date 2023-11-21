@@ -62,6 +62,14 @@ const Header = () => {
               >
                 Products
               </NavLink>
+              <NavLink
+                to="/login"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "active" : ""
+                }
+              >
+                Login
+              </NavLink>
               </nav>
 
             </Navbar.Container>
@@ -98,7 +106,7 @@ const Header = () => {
                   isPending ? "pending" : isActive ? "active" : ""
                 }
               >
-                Expers
+                Experts
               </NavLink>
               <NavLink
                 to="/products"
@@ -107,6 +115,14 @@ const Header = () => {
                 }
               >
                 Products
+              </NavLink>
+              <NavLink
+                to="/login"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "active" : ""
+                }
+              >
+                Login
               </NavLink>
               </nav>
               
