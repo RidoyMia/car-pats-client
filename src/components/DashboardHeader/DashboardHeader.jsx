@@ -2,7 +2,7 @@ import React from 'react';
 import logo from "../../assets/logo-wide.png"
 import { FaGooglePlusG } from "react-icons/fa";
 
-import './dashboard.css'
+
 import { NavLink } from 'react-router-dom';
 const DashboardHeader = () => {
     return (
