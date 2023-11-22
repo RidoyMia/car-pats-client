@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+
 export const UserApi = createApi({
     reducerPath : 'user',
     baseQuery : fetchBaseQuery({baseUrl : 'https://car-repairing-server.vercel.app/api/v1/user'}),
@@ -9,8 +10,15 @@ export const UserApi = createApi({
                 method : 'POST',
                 body : userInfo
             })
+        }),
+        SigninUser : builder.mutation({
+            query : (userInfo) => ({
+                url : '/signin',
+                method : 'POST',
+                body : userInfo
+            })
         })
     })
 })
 
-export const {useCreateUserMutation} = UserApi
+export const {useCreateUserMutation,useSigninUserMutation} = UserApi

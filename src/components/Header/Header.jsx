@@ -14,7 +14,12 @@ import {
 import { Link, NavLink } from 'react-router-dom';
 import { authContext } from '../../AuthContext/AuthProvider';
 const Header = () => {
-  const {user,logOut} = useContext(authContext)
+  const {user,logOut} = useContext(authContext);
+  const logOutUser = ()=>{
+   
+    localStorage.removeItem('accesstoken')
+    logOut()
+  }
   return (
     <div>
       <Navbar fluid={true} s className='bg-blue-900 !py-5'>
@@ -78,7 +83,7 @@ const Header = () => {
               }
               
               {
-                user ? <button className=' px-1 py-1 bg-blue-400 text-white rounded-lg' onClick={()=>logOut()}>LouOut</button>: <NavLink
+                user ? <button className=' px-1 py-1 bg-blue-400 text-white rounded-lg' onClick={()=>logOutUser()}>LouOut</button>: <NavLink
                 to="/login"
                 className={({ isActive, isPending }) =>
                   isPending ? "pending" : isActive ? "active" : ""

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { FaGooglePlusG } from "react-icons/fa";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { authContext } from '../../AuthContext/AuthProvider';
 import Loading from "../../components/Loading/Loading"
 import toast, { Toaster } from 'react-hot-toast';
@@ -9,15 +9,18 @@ import axios from 'axios';
 import { useCreateUserMutation } from '../../components/store/UserApi/UserApi';
 const api = `bd0f22832703db189e737da27b90a211`
 const Register = () => {
+
     const navigate = useNavigate()
+    const location = useLocation()
     const [loading,setLoading]  = useState(false)
     const [CreateUser] = useCreateUserMutation()
     const {user,createUser,updateProfileData,googleLogin} = useContext(authContext);
-    console.log(user);
+     let from = location.state?.from?.pathname || "/";
     const { register, handleSubmit, watch, formState: { errors }, } = useForm();
     const onSubmit = (data) => {
         
-        setLoaing(true)
+        setLoading(true)
+        
         if(data?.password !== data?.confirm){
            toast.error('Password does not match')
         }else{
@@ -42,19 +45,21 @@ const Register = () => {
                         if(userInfo){
                                  CreateUser(userInfo).then(res => {
                                     if(res){
-                                        navigate('/login')
-                                        setLoaing(false)
+                                        navigate(from, { replace: true });
+                                        setLoading(false)
                                     }
-                                  console.log(res?.data?.result,'useeee');
+                                 
                            })
                         }
                        
 
                     })
-                    .catch(error => console.log(error))
+                    .catch(error => {
+
+                    })
                 }
               }).catch(e=>{
-                console.log(e);
+                ;
               })
             }
            })
@@ -73,15 +78,15 @@ const Register = () => {
          if(userInfo){
             CreateUser(userInfo).then(res => {
                 if(res){
-                    navigate('/login')
+                    navigate(from, { replace: true });
                     setLoading(false)
                 }
-              console.log(res,'useeee');
+           
        })
          }
         
         }).catch(e=>{
-            console.log(e);
+           ;
         })
     }
     if(loading){

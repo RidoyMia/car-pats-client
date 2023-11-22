@@ -8,7 +8,7 @@ const ExpertDetails = () => {
     if (isLoading) {
         return <Loading></Loading>
     }
-    console.log(data, 'expert');
+
     return (
 
         <div>

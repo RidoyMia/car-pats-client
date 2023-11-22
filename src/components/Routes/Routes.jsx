@@ -16,6 +16,8 @@ import NotFound from "../../page/NotFound/NotFound";
 import DisplayServiceDetails from "../../page/DisplayServiceDetails/DisplayServiceDetails";
 import BlogDetails from "../../page/BlogDetails/BlogDetails";
 import ExpertDetails from "../../page/ExperDetails/ExpertDetails";
+import ServicesDetails from "../../page/ServicesDetails/ServicesDetails";
+import AuthRoutes from "../../AuthRoutes/AuthRoutes";
 
 
 
@@ -33,6 +35,9 @@ export const router = createBrowserRouter([
         {
             path : '/services',
             element : <Services></Services>
+        },{
+          path : 'servicesDetails/:id',
+          element : <AuthRoutes><ServicesDetails></ServicesDetails></AuthRoutes>
         },{
             path : '/expert',
             element : <Expert></Expert>
