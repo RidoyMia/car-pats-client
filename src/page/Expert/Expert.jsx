@@ -2,11 +2,16 @@ import React from 'react';
 import { useGetAllExpertQuery } from '../../components/store/ExpertApi/ExpertApi';
 import Loading from '../../components/Loading/Loading';
 import { Card } from 'keep-react';
+import { useNavigate } from 'react-router-dom';
 
 const Expert = () => {
+  const navigate = useNavigate()
     const {data,isError,isLoading} = useGetAllExpertQuery(undefined);
     if(isLoading){
         return <Loading></Loading>
+    }
+    const detailsExpert = id =>{
+      navigate(`/expert/${id}`)
     }
     return (
         <div>
@@ -28,7 +33,7 @@ const Expert = () => {
                                 <h1 className='text-xl font-semibold'>Expert : {s?.expert}</h1>
                                 <p>{s?.About.slice(0,60)}...</p>
                                 <div className='flex justify-between align-middle items-center'>
-                                <button className='text-white text-sm border mt-5 bg-blue-900 px-3 py-1 rounded-md  hover:bg-white hover:text-black hover:border'>Read more</button>
+                                <button className='text-white text-sm border mt-5 bg-blue-900 px-3 py-1 rounded-md  hover:bg-white hover:text-black hover:border' onClick={()=>detailsExpert(s?._id)}>Read more</button>
                                 
                                 </div>
                             </div>

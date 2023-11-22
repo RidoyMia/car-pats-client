@@ -14,6 +14,8 @@ import DashboardLayout from "../Layout/DashboardLayout";
 import Dashboard from "../../page/Dashboard/Dashboard";
 import NotFound from "../../page/NotFound/NotFound";
 import DisplayServiceDetails from "../../page/DisplayServiceDetails/DisplayServiceDetails";
+import BlogDetails from "../../page/BlogDetails/BlogDetails";
+import ExpertDetails from "../../page/ExperDetails/ExpertDetails";
 
 
 
@@ -48,6 +50,12 @@ export const router = createBrowserRouter([
         {
           path : '/displayservice/:id',
           element : <DisplayServiceDetails></DisplayServiceDetails>
+        },{
+          path : '/blog/:id',
+          element : <BlogDetails></BlogDetails>
+        },{
+          path : '/expert/:id',
+          element : <ExpertDetails></ExpertDetails>
         },{
           path : '*',
           element : <NotFound></NotFound>

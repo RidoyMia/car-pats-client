@@ -8,8 +8,10 @@ import servicethreeimg from "../../assets/s3.jpg"
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import { useGetAllBlogsQuery } from '../store/BlogApi/BlogApi';
+import { useNavigate } from 'react-router-dom';
 
 const Blogs = () => {
+  const navigate = useNavigate()
     const renderPrevButton = () => false;
     const renderNextButton = () => false;
    
@@ -29,6 +31,9 @@ const Blogs = () => {
     if (isLoading) {
         return <Loading></Loading>
     }
+    const detailsBlog = id =>{
+            navigate(`/blog/${id}`)
+    }
     const items = data?.result?.map((s, index) => (
         <div key={index} className="item gap-x-3" data-value="1">
            
@@ -45,7 +50,7 @@ const Blogs = () => {
                       <Card.Description className="text-body-5 text-md py-3 text-metal-500">
                         {s?.descriptions?.slice(0,100)}...
                       </Card.Description>
-                      <button className='text-white text-sm border mt-5 bg-blue-900 px-3 py-1 rounded-md  hover:bg-white hover:text-black hover:border'>Read more</button>
+                      <button className='text-white text-sm border mt-5 bg-blue-900 px-3 py-1 rounded-md  hover:bg-white hover:text-black hover:border' onClick={()=>detailsBlog(s?._id)}>Read more</button>
                     </Card.Container>
                     
                     

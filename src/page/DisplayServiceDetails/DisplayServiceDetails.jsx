@@ -7,7 +7,7 @@ import Loading from '../../components/Loading/Loading';
 const DisplayServiceDetails = () => {
     const {id} = useParams();
    const {data,isLoading} = useGetSingleBestServiceQuery(id);
-   console.log(data,'blog details');
+  
    if(isLoading){
     return <Loading></Loading>
    }

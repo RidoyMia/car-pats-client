@@ -13,12 +13,18 @@ import Main from './components/Layout/Main.jsx'
 import Home from './page/Home/Home.jsx'
 import { router } from './components/Routes/Routes.jsx'
 
+import AuthProvider from './AuthContext/AuthProvider.jsx'
+
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <Provider store={store}>
+
+   <Provider store={store}>
   
   <React.StrictMode>
-  <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+      </AuthProvider>
   </React.StrictMode>,
   
   </Provider>
+
 )

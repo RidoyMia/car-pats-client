@@ -7,12 +7,12 @@ import { useNavigate } from 'react-router-dom';
 const DisplayService = () => {
     const navigate = useNavigate()
     const {data,isError,isLoading} = useGetAllBestServicesQuery(undefined);
-    console.log(data,'data');
+
     if(isLoading){
         return <Loading></Loading>
     }
     const handleDetails = id =>{
-      console.log(id);
+   
       navigate(`/displayservice/${id}`)
     }
     return (

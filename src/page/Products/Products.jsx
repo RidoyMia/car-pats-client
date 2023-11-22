@@ -8,7 +8,7 @@ const Products = () => {
     if(isLoading){
         return <Loading></Loading>
     }
-    console.log(data,'products');
+   
     return (
         <div>
             <div className='container'>

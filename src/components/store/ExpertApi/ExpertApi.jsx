@@ -6,8 +6,11 @@ export const ExpertApi = createApi({
     endpoints : builder => ({
         getAllExpert : builder.query({
             query : ()=> '/all'
+        }),
+        getSingleExper : builder.query({
+            query : (id) => `/${id}`
         })
     })
 })
 
-export const {useGetAllExpertQuery} = ExpertApi
+export const {useGetAllExpertQuery,useGetSingleExperQuery} = ExpertApi

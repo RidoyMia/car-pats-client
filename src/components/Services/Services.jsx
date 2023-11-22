@@ -3,7 +3,7 @@ import { useGetAllServicesQuery } from '../store/ServicesApi/ServicesApi';
 import { Badge,Button,Card, } from "keep-react";
 const Services = () => {
     const {data} = useGetAllServicesQuery(undefined);
-    console.log(data);
+  
     return (
         <div className='container py-12'>
             <h1 className='text-center text-5xl font-bold '>Our <span className='text-red-600'> Services</span></h1>
