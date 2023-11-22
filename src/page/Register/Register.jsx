@@ -1,18 +1,23 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { FaGooglePlusG } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { authContext } from '../../AuthContext/AuthProvider';
+import Loading from "../../components/Loading/Loading"
 import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios';
 import { useCreateUserMutation } from '../../components/store/UserApi/UserApi';
 const api = `bd0f22832703db189e737da27b90a211`
 const Register = () => {
+    const navigate = useNavigate()
+    const [loading,setLoading]  = useState(false)
     const [CreateUser] = useCreateUserMutation()
-    const {user,createUser,updateProfileData} = useContext(authContext);
+    const {user,createUser,updateProfileData,googleLogin} = useContext(authContext);
     console.log(user);
     const { register, handleSubmit, watch, formState: { errors }, } = useForm();
     const onSubmit = (data) => {
+        
+        setLoaing(true)
         if(data?.password !== data?.confirm){
            toast.error('Password does not match')
         }else{
@@ -36,7 +41,11 @@ const Register = () => {
                         }
                         if(userInfo){
                                  CreateUser(userInfo).then(res => {
-                                  console.log(res,'useeee');
+                                    if(res){
+                                        navigate('/login')
+                                        setLoaing(false)
+                                    }
+                                  console.log(res?.data?.result,'useeee');
                            })
                         }
                        
@@ -51,6 +60,32 @@ const Register = () => {
            })
            
         }
+        setLoading(false)
+    }
+    const Google = ()=>{
+        setLoading(true)
+        googleLogin().then(res =>{
+         const userInfo = {
+            name : res?.user?.displayName,
+            email : res?.user?.email,
+            image : res?.user?.photoURL
+         }
+         if(userInfo){
+            CreateUser(userInfo).then(res => {
+                if(res){
+                    navigate('/login')
+                    setLoading(false)
+                }
+              console.log(res,'useeee');
+       })
+         }
+        
+        }).catch(e=>{
+            console.log(e);
+        })
+    }
+    if(loading){
+        return <Loading></Loading>
     }
     return (
         <div>
@@ -84,7 +119,7 @@ const Register = () => {
                             <h1 className='px-5 font-semibold'>OR</h1>
                             <div className='bg-gray-500 h-[1px] w-44'></div>
                         </div>
-                        <div className='mx-20 bg-blue-900 text-white py-1 mt-5 rounded-lg'>
+                        <div className='mx-20 bg-blue-900 text-white py-1 mt-5 rounded-lg' onClick={Google}>
                             <div className='flex justify-center align-middle items-center bg-blue-900 text-white'>
                                 <h1><FaGooglePlusG></FaGooglePlusG></h1>
                                 <h1 className='px-1'>Google</h1>

@@ -4,7 +4,7 @@ export const UserApi = createApi({
     baseQuery : fetchBaseQuery({baseUrl : 'https://car-repairing-server.vercel.app/api/v1/user'}),
     endpoints : builder =>({
         CreateUser :builder.mutation({
-            query : ({userInfo}) => ({
+            query : (userInfo) => ({
                 url : '/create',
                 method : 'POST',
                 body : userInfo

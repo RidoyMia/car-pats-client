@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Navbar, TextInput } from "keep-react";
 import logo from "../../assets/logo-wide.png"
+import { Dropdown } from "keep-react";
+import { CaretRight, Gear, Money, SignOut, SquaresFour } from "phosphor-react";
 import './Header.css'
 import {
   CaretDown,
@@ -10,7 +12,9 @@ import {
   TwitterLogo,
 } from "phosphor-react";
 import { Link, NavLink } from 'react-router-dom';
+import { authContext } from '../../AuthContext/AuthProvider';
 const Header = () => {
+  const {user,logOut} = useContext(authContext)
   return (
     <div>
       <Navbar fluid={true} s className='bg-blue-900 !py-5'>
@@ -62,7 +66,19 @@ const Header = () => {
               >
                 Products
               </NavLink>
-              <NavLink
+              {
+                user ? <NavLink
+                to="/dashboard"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "active" : ""
+                }
+              >
+                Dashboard
+              </NavLink> : ''
+              }
+              
+              {
+                user ? <button className=' px-1 py-1 bg-blue-400 text-white rounded-lg' onClick={()=>logOut()}>LouOut</button>: <NavLink
                 to="/login"
                 className={({ isActive, isPending }) =>
                   isPending ? "pending" : isActive ? "active" : ""
@@ -70,6 +86,7 @@ const Header = () => {
               >
                 Login
               </NavLink>
+              }
               </nav>
 
             </Navbar.Container>

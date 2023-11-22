@@ -1,8 +1,22 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import DashboardHeader from '../DashboardHeader/DashboardHeader';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { authContext } from '../../AuthContext/AuthProvider';
 
 const DashboardLayout = () => {
+    const [loading,setLoading] = useState(true);
+    const navigate = useNavigate()
+    const {user} = useContext(authContext);
+    useEffect(()=>{
+        setLoading(true);
+        if(user){
+            setLoading(false)
+        }
+        else{
+           navigate('/')
+           setLoading(false)
+        }
+    },[user])
     return (
         <div className=''>
             <div className='grid grid-cols-1 lg:grid-cols-12 md:grid-cols-12  text-white'>
@@ -13,14 +27,7 @@ const DashboardLayout = () => {
                     <Outlet></Outlet>
                 </div>
             </div>
-            {/* <div className='flex justify-start bg-red-100'>
-                <div className=''>
-                    <DashboardHeader></DashboardHeader>
-                </div>
-                <div className=''>
-                    <Outlet></Outlet>
-                </div>
-            </div> */}
+            
             
         </div>
     );
