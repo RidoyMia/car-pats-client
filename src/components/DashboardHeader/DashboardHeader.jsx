@@ -4,7 +4,8 @@ import { FaGooglePlusG } from "react-icons/fa";
 
 
 import { NavLink } from 'react-router-dom';
-const DashboardHeader = () => {
+const DashboardHeader = ({admin}) => {
+  console.log(admin,'from iteams of dashboard');
     return (
         <div className=' lg:h-screen md:h-screen py-5 '>
             <img src={logo} className='w-96 h-13 py-12 hidden lg:block md:block'></img>

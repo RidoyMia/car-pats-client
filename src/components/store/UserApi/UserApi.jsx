@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export const UserApi = createApi({
     reducerPath : 'user',
-    baseQuery : fetchBaseQuery({baseUrl : 'https://car-repairing-server.vercel.app/api/v1/user'}),
+    baseQuery : fetchBaseQuery({baseUrl : 'http://localhost:7000/api/v1/user'}),
     endpoints : builder =>({
         CreateUser :builder.mutation({
             query : (userInfo) => ({
@@ -17,8 +17,18 @@ export const UserApi = createApi({
                 method : 'POST',
                 body : userInfo
             })
+        }),
+        getIsAdmin : builder.query({
+            query : ({email,accesstoken}) => ({
+                url : `/${email}`,
+                method : 'GET',
+                headers : {
+                    'Content-Type': 'application/json',
+                    accesstoken : accesstoken
+                }
+            })
         })
     })
 })
 
-export const {useCreateUserMutation,useSigninUserMutation} = UserApi
+export const {useCreateUserMutation,useSigninUserMutation,useGetIsAdminQuery} = UserApi

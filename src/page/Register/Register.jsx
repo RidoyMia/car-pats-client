@@ -15,7 +15,8 @@ const Register = () => {
     const [loading,setLoading]  = useState(false)
     const [CreateUser] = useCreateUserMutation()
     const {user,createUser,updateProfileData,googleLogin} = useContext(authContext);
-     let from = location.state?.from?.pathname || "/";
+     let from = location.state?.from?.pathname || "/";;
+     console.log(user);
     const { register, handleSubmit, watch, formState: { errors }, } = useForm();
     const onSubmit = (data) => {
         
@@ -28,7 +29,8 @@ const Register = () => {
            const formData = new FormData()
            formData.append('image', image)
            axios.post(`https://api.imgbb.com/1/upload?expiration=600&key=${api}`,formData).then(res => {
-            const images = res?.data?.data?.url
+            const images = res?.data?.data?.url;
+            console.log(images);
             if(res?.data?.data.url){
               createUser(data?.email,data.password).then(res => {
                 
@@ -40,11 +42,13 @@ const Register = () => {
                         const userInfo = {
                             name: data.name,
                             email: data.email,
-                            image : user?.photoURL
+                            image : images
                         }
+                        console.log(userInfo);
                         if(userInfo){
                                  CreateUser(userInfo).then(res => {
                                     if(res){
+                                        console.log(res,'user');
                                         navigate(from, { replace: true });
                                         setLoading(false)
                                     }

@@ -2,12 +2,17 @@ import React from 'react';
 import { useGetAllServicesQuery } from '../../components/store/ServicesApi/ServicesApi';
 import Loading from '../../components/Loading/Loading';
 import { Card } from 'keep-react';
+import { useNavigate } from 'react-router-dom';
 
 const Services = () => {
+  const navigate = useNavigate()
     const {data,isError,isLoading} = useGetAllServicesQuery(undefined);
     if(isLoading){
         return <Loading></Loading>
     }
+    const ServiceDetails = (id)=>{
+      navigate(`/servicesDetails/${id}`)
+ }
     return (
         <div>
             <div className='container py-12'>
@@ -27,7 +32,7 @@ const Services = () => {
                                 <h1 className='text-3xl font-semibold'>{s?.name}</h1>
                                 <p>{s?.descriptions.slice(0,60)}...</p>
                                 <div className='flex justify-between align-middle items-center'>
-                                <button className='text-white text-sm border mt-5 bg-blue-900 px-3 py-1 rounded-md  hover:bg-white hover:text-black hover:border'>Read more</button>
+                                <button className='text-white text-sm border mt-5 bg-blue-900 px-3 py-1 rounded-md  hover:bg-white hover:text-black hover:border'onClick={()=>ServiceDetails(s?._id)}>Read more</button>
                                 <h1 className='mt-2 text-lg font-semibold'>Cost : ${s?.price}</h1>
                                 </div>
                             </div>
