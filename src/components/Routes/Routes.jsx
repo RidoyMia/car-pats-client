@@ -18,6 +18,10 @@ import BlogDetails from "../../page/BlogDetails/BlogDetails";
 import ExpertDetails from "../../page/ExperDetails/ExpertDetails";
 import ServicesDetails from "../../page/ServicesDetails/ServicesDetails";
 import AuthRoutes from "../../AuthRoutes/AuthRoutes";
+import { CheckBox } from "keep-react";
+import CheckOut from "../../page/CheckOut/CheckOut";
+import Successpage from "../../page/SuccessPage/Successpage";
+import ProductDetails from "../../page/ProductsDetails/ProductDetails";
 
 
 
@@ -33,6 +37,10 @@ export const router = createBrowserRouter([
          
         },
         {
+          path : '/checkout/:id',
+          element : <CheckOut></CheckOut>
+        },
+        {
             path : '/services',
             element : <Services></Services>
         },{
@@ -41,9 +49,16 @@ export const router = createBrowserRouter([
         },{
             path : '/expert',
             element : <Expert></Expert>
+        },
+        {
+          path : '/success/:id',
+          element : <Successpage></Successpage>
         },{
             path : '/products',
             element : <Products></Products>
+        },{
+            path : '/product/:id',
+            element : <ProductDetails></ProductDetails>
         },
         {
             path : '/login',
