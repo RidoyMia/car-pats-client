@@ -22,6 +22,7 @@ import { CheckBox } from "keep-react";
 import CheckOut from "../../page/CheckOut/CheckOut";
 import Successpage from "../../page/SuccessPage/Successpage";
 import ProductDetails from "../../page/ProductsDetails/ProductDetails";
+import ProductSuccess from "../../page/Products/productSuccess/ProductSuccess";
 
 
 
@@ -59,6 +60,9 @@ export const router = createBrowserRouter([
         },{
             path : '/product/:id',
             element : <ProductDetails></ProductDetails>
+        },{
+           path : '/productDetails/:id',
+           element : <ProductSuccess></ProductSuccess>
         },
         {
             path : '/login',

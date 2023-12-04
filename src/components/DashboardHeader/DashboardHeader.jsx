@@ -16,42 +16,44 @@ const DashboardHeader = ({admin}) => {
                   isPending ? "pending" : isActive ? "active" : ""
                 }
               >
-                <div className='flex justify-start items-center align-middle'>
-                    <FaGooglePlusG></FaGooglePlusG>
-                    <h1>Dashboard</h1>
+                <div className='flex justify-start items-center align-middle py-1'>
+                  
+                    <h1 className='text-xl'>Dashboard</h1>
                 </div>
               </NavLink>
               <NavLink
-                to="/dashboard/ami"
+                to="/dashboard/my-sevices"
                 className={({ isActive, isPending }) =>
                   isPending ? "pending" : isActive ? "active" : ""
                 }
               >
-                ami
+              <div className='flex justify-start items-center align-middle py-1'>
+                  
+                  <h1 className='text-xl'>My-Services</h1>
+              </div>
               </NavLink>
               <NavLink
-                to="/expert"
+                to="/dashboard/My-products"
                 className={({ isActive, isPending }) =>
                   isPending ? "pending" : isActive ? "active" : ""
                 }
               >
-                Experts
+                <div className='flex justify-start items-center align-middle py-1'>
+                  
+                  <h1 className='text-xl'>My-Products</h1>
+              </div>
               </NavLink>
+              
               <NavLink
-                to="/products"
+                to="/dashboard/addReview"
                 className={({ isActive, isPending }) =>
                   isPending ? "pending" : isActive ? "active" : ""
                 }
               >
-                Products
-              </NavLink>
-              <NavLink
-                to="/login"
-                className={({ isActive, isPending }) =>
-                  isPending ? "pending" : isActive ? "active" : ""
-                }
-              >
-                Login
+               <div className='flex justify-start items-center align-middle py-1'>
+                  
+                  <h1 className='text-xl'>Add-Review</h1>
+              </div>
               </NavLink>
               </nav>
         </div>
