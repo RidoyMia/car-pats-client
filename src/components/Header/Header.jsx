@@ -23,7 +23,7 @@ const Header = () => {
     logOut()
   }
   if(user){
-    axios.get(`http://localhost:7000/api/v1/user/role/${user?.email}`).then(res => {
+    axios.get(`https://car-repairing-server.vercel.app/api/v1/user/role/${user?.email}`).then(res => {
       const userRole = res.data.result[0]?.role;
       if(userRole == 'admin'){
         setAdmin(true)
