@@ -4,8 +4,7 @@ import { FaGooglePlusG } from "react-icons/fa";
 
 
 import { NavLink } from 'react-router-dom';
-const DashboardHeader = ({admin}) => {
-  console.log(admin,'from iteams of dashboard');
+const DashboardHeader = () => {
     return (
         <div className=' lg:h-screen md:h-screen py-5 '>
             <img src={logo} className='w-96 h-13 py-12 hidden lg:block md:block'></img>
@@ -44,17 +43,7 @@ const DashboardHeader = ({admin}) => {
               </div>
               </NavLink>
               
-              <NavLink
-                to="/dashboard/addReview"
-                className={({ isActive, isPending }) =>
-                  isPending ? "pending" : isActive ? "active" : ""
-                }
-              >
-               <div className='flex justify-start items-center align-middle py-1'>
-                  
-                  <h1 className='text-xl'>Add-Review</h1>
-              </div>
-              </NavLink>
+             
               </nav>
         </div>
     );

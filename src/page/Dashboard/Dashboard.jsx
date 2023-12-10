@@ -3,6 +3,8 @@ import { authContext } from '../../AuthContext/AuthProvider';
 import { useGetSingleUserPaymentQuery } from '../../components/store/ProductPaymentApi/ProductPaymentApi';
 import Loading from '../../components/Loading/Loading';
 import { useGetSingleUserServicePaymentInfoQuery } from '../../components/store/ServicePaymentApi/ServicePaymentApi';
+import UserServices from '../../components/DashboardComponents/UserServices/UserServices';
+import UserProducts from '../../components/DashboardComponents/UserProducts/UserProducts';
 
 const Dashboard = () => {
     const {user} = useContext(authContext);
@@ -32,6 +34,10 @@ const Dashboard = () => {
                     <h1> My Services</h1>
                 </div>
             </div>
+            <h1 className='pt-20 pb-4 text-3xl font-semibold'>My-Services</h1>
+            <UserServices service={servicePaymentData?.result}></UserServices>
+            <h1 className='pt-20 pb-4 text-3xl font-semibold'>My-Products</h1>
+            <UserProducts services={paymenData?.result}></UserProducts>
         </div>
     );
 };

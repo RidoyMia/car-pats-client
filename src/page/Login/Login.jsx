@@ -21,11 +21,19 @@ const Login = () => {
            
          }
          if(userInfo){
-            SigninUser(userInfo).then(res => {
-                if(res){
-                    localStorage.setItem('accesstoken',res?.data.accesstoken)
-                    navigate(from, { replace: true });
-                    setLoading(false)
+            SigninUser(userInfo).then(result => {
+                if(result){
+                    if(result?.data?.role =='user'){
+                        console.log(result,'user res');
+                        localStorage.setItem('accesstoken',result?.data?.accesstoken)
+                        navigate(from, { replace: true });
+                        
+                    }
+                    else{
+                        localStorage.setItem('accesstoken',result?.data?.accesstoken)
+                        navigate('/adminDashboard')
+                        setLoading(false)
+                    }
                 }
               
        })
@@ -46,11 +54,20 @@ const Login = () => {
                 const userInfo = {
                     email
                 }
-                SigninUser(userInfo).then(res => {
-                    if(res){
-                        localStorage.setItem('accesstoken',res?.data?.accesstoken)
-                        navigate(from, { replace: true });
-                        setLoading(false)
+                SigninUser(userInfo).then(result => {
+                    if(result){
+                        if(result?.data?.role =='user'){
+                            console.log(result,'user res');
+                            localStorage.setItem('accesstoken',result?.data?.accesstoken)
+                            navigate(from, { replace: true });
+                            
+                        }
+                        else{
+                            localStorage.setItem('accesstoken',result?.data?.accesstoken)
+                            navigate('/adminDashboard')
+                            setLoading(false)
+                        }
+                        
                     }
                 })
              }

@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
 
 export const prodcutPaymentApi = createApi({
     reducerPath : 'productPayment',
-    baseQuery : fetchBaseQuery({baseUrl : 'https://car-repairing-server.vercel.app/api/v1/productPayment'}),
+    baseQuery : fetchBaseQuery({baseUrl : 'http://localhost:7000/api/v1/productPayment'}),
     endpoints : builder =>({
         productPayment : builder.mutation({
             query : (productorderinfo) =>({
@@ -24,7 +24,10 @@ export const prodcutPaymentApi = createApi({
                 },
                
             })
+        }),
+        getAllproductPayment : builder.query({
+            query : (page)=> `/all?page=${page}`
         })
     })
 })
-export const {useProductPaymentMutation,useGetSingleProductPaymentQuery,useGetSingleUserPaymentQuery} = prodcutPaymentApi
+export const {useProductPaymentMutation,useGetSingleProductPaymentQuery,useGetSingleUserPaymentQuery,useGetAllproductPaymentQuery} = prodcutPaymentApi

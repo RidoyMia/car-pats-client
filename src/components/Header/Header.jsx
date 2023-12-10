@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Navbar, TextInput } from "keep-react";
 import logo from "../../assets/logo-wide.png"
 import { Dropdown } from "keep-react";
@@ -13,12 +13,25 @@ import {
 } from "phosphor-react";
 import { Link, NavLink } from 'react-router-dom';
 import { authContext } from '../../AuthContext/AuthProvider';
+import axios from 'axios';
 const Header = () => {
   const {user,logOut} = useContext(authContext);
+  const [admin,setAdmin] = useState(false)
   const logOutUser = ()=>{
    
     localStorage.removeItem('accesstoken')
     logOut()
+  }
+  if(user){
+    axios.get(`http://localhost:7000/api/v1/user/role/${user?.email}`).then(res => {
+      const userRole = res.data.result[0]?.role;
+      if(userRole == 'admin'){
+        setAdmin(true)
+      }
+      else{
+        console.log('admin na');
+      }
+    })
   }
   return (
     <div>
@@ -72,7 +85,7 @@ const Header = () => {
                 Products
               </NavLink>
               {
-                user ? <NavLink
+                user && !admin ? <NavLink
                 to="/dashboard"
                 className={({ isActive, isPending }) =>
                   isPending ? "pending" : isActive ? "active" : ""
@@ -81,7 +94,17 @@ const Header = () => {
                 Dashboard
               </NavLink> : ''
               }
-              
+
+              {
+               user && admin ? <NavLink
+                to="/adminDashboard"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "active" : ""
+                }
+              >
+                Dashboard
+              </NavLink> : ''
+              }
               {
                 user ? <button className=' px-1 py-1 bg-blue-400 text-white rounded-lg' onClick={()=>logOutUser()}>LouOut</button>: <NavLink
                 to="/login"

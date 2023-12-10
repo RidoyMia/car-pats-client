@@ -24,6 +24,19 @@ import Successpage from "../../page/SuccessPage/Successpage";
 import ProductDetails from "../../page/ProductsDetails/ProductDetails";
 import ProductSuccess from "../../page/Products/productSuccess/ProductSuccess";
 
+import UserProduct from "../../page/Dashboard/UserDashboardPages/UserProducts/UserProduct";
+import UserService from "../../page/Dashboard/UserDashboardPages/UserService/UserService";
+import AdminLayout from "../Layout/AdminLayout";
+import AdminDashboardHome from "../../page/Dashboard/AdminDashboardPages/AdminDashboardHome/AdminDashboardHome";
+import AdminAllServices from "../../page/Dashboard/AdminDashboardPages/AdminAllServices/AdminAllServices";
+import AdminAllProducts from "../../page/Dashboard/AdminDashboardPages/AdminAllProducts/AdminAllProducts";
+import AdminAllProductPayments from "../../page/Dashboard/AdminDashboardPages/AdminAllProductPayments/AdminAllProductPayments";
+import AddProduct from "../../page/Dashboard/AdminDashboardPages/AddProduct/AddProduct";
+import AddService from "../../page/Dashboard/AdminDashboardPages/AddService/AddService";
+import UpdateProduct from "../../page/Dashboard/AdminDashboardPages/UpdateProduct/UpdateProduct";
+import UpdatedService from "../../page/Dashboard/AdminDashboardPages/UpdatedService/UpdatedService";
+import AdminOrders from "../../page/Dashboard/AdminDashboardPages/AdminOrder/AdminOrders";
+
 
 
 export const router = createBrowserRouter([
@@ -59,10 +72,10 @@ export const router = createBrowserRouter([
             element : <Products></Products>
         },{
             path : '/product/:id',
-            element : <ProductDetails></ProductDetails>
+            element : <AuthRoutes><ProductDetails></ProductDetails></AuthRoutes>
         },{
            path : '/productDetails/:id',
-           element : <ProductSuccess></ProductSuccess>
+           element : <AuthRoutes><ProductSuccess></ProductSuccess></AuthRoutes>
         },
         {
             path : '/login',
@@ -94,11 +107,51 @@ export const router = createBrowserRouter([
             {
                 path : '/dashboard',
                 element : <Dashboard></Dashboard>
+            },
+            {
+              path : '/dashboard/my-sevices',
+              element : <UserProduct></UserProduct>
+            },{
+              path : '/dashboard/My-products',
+              element : <UserService></UserService>
             },{
               path : '*',
               element : <NotFound></NotFound>
             }
         ]
+    },{
+      path : '/adminDashboard',
+      element : <AuthRoutes><AdminLayout></AdminLayout></AuthRoutes>,
+      children : [
+        {
+          path : '/adminDashboard',
+          element : <AdminDashboardHome></AdminDashboardHome>
+        },{
+          path : '/adminDashboard/services',
+          element : <AdminAllServices></AdminAllServices>
+        },{
+          path : '/adminDashboard/products',
+          element : <AdminAllProducts></AdminAllProducts>
+        },{
+          path : '/adminDashboard/orders',
+          element : <AdminAllProductPayments></AdminAllProductPayments>
+        },{
+          path : '/adminDashboard/addproduct',
+          element : <AddProduct></AddProduct>
+        },{
+          path : '/adminDashboard/addService',
+          element : <AddService></AddService>
+        },{
+          path : '/adminDashboard/updateproduct/:id',
+          element : <UpdateProduct></UpdateProduct>
+        },{
+          path : '/adminDashboard/updateservice/:id',
+          element : <UpdatedService></UpdatedService>
+        },{
+          path : '/adminDashboard/totalOrders',
+          element : <AdminOrders></AdminOrders>
+        }
+      ]
     }
   ]);
 
